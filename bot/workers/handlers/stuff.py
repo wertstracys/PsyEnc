@@ -125,14 +125,7 @@ async def start(event, args, client):
         msg,
         buttons=[
             [Button.inline("Help", data="ihelp")],
-            [
-                Button.url(
-                    "Source-Code (Original)",
-                    url="github.com/1Danish-00/compressorqueue",
-                ),
-                Button.url("Developer (Original)", url="t.me/danish_00"),
-            ],
-            [Button.url("Fork Maintainer", url="t.me/Col_serra")],
+            [Button.url("Fork Maintainer", url="t.me/SvtAv1Enc")],
         ],
     )
 
@@ -178,14 +171,7 @@ async def beck(event):
         msg,
         buttons=[
             [Button.inline("Help", data="ihelp")],
-            [
-                Button.url(
-                    "Source-Code (Original)",
-                    url="github.com/1Danish-00/compressorqueue",
-                ),
-                Button.url("Developer (Original)", url="t.me/danish_00"),
-            ],
-            [Button.url("Fork Maintainer", url="t.me/Col_serra")],
+            [Button.url("Fork Maintainer", url="t.me/SvtAv1Enc")],
         ],
     )
 
