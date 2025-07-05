@@ -31,9 +31,9 @@ class Config:
             )
             self.ARIA2_PORT = config("ARIA2_PORT", default=6800, cast=int)
             self.BOT_TOKEN = config("BOT_TOKEN")
-            self.CACHE_DL = config("CACHE_DL", default=False, cast=bool)
-            self.CAP_DECO = config("CAP_DECO", default="◉")
-            self.C_LINK = config("C_LINK", default="@ANi_MiNE")
+            self.CACHE_DL = config("CACHE_DL", default=True, cast=bool)
+            self.CAP_DECO = config("CAP_DECO", default="🏖️")
+            self.C_LINK = config("C_LINK", default="@QVA_FLiX")
             self.CMD_SUFFIX = config("CMD_SUFFIX", default=str())
             self.COMP_MODE = config("COMPATIBILITY_MODE", default=True, cast=bool)
             self.CUSTOM_RENAME = config("CUSTOM_RENAME", default=None)
@@ -42,17 +42,17 @@ class Config:
             self.DEV = config("DEV", default=0, cast=int)
             self.DL_STUFF = config("DL_STUFF", default=None)
             self.DUMP_CHANNEL = config("DUMP_CHANNEL", default=0, cast=int)
-            self.DUMP_LEECH = config("DUMP_LEECH", default=True, cast=bool)
+            self.DUMP_LEECH = config("DUMP_LEECH", default=False, cast=bool)
             self.DYNO = config("DYNO", default=None)
             self.ENCODER = config("ENCODER", default=None)
-            self.EXT_CAP = config("EXTENDED_CAPTIONS", default=True, cast=bool)
+            self.EXT_CAP = config("EXTENDED_CAPTIONS", default=False, cast=bool)
             self.FBANNER = config("FBANNER", default=False, cast=bool)
             self.FCHANNEL = config("FCHANNEL", default=0, cast=int)
             self.FCHANNEL_STAT = config("FCHANNEL_STAT", default=0, cast=int)
             self.FCODEC = config("FCODEC", default=None)
             self.FFMPEG = config(
                 "FFMPEG",
-                default='ffmpeg -i "{}" -preset ultrafast -c:v libx265 -crf 27 -map 0:v -c:a aac -map 0:a -c:s copy -map 0:s? "{}"',
+                default='ab-av1 auto-encode -i "{}" --svt tile-columns=0:tune=1 --keyint 321 --max-crf 63 --min-vmaf 83 --preset 8 --vfilter scale=-2:480 -o "{}"',
             )
             self.FFMPEG2 = config("FFMPEG2", default=None)
             self.FFMPEG3 = config("FFMPEG3", default=None)
@@ -60,12 +60,18 @@ class Config:
             self.FINISHED_PROGRESS_STR = config("FINISHED_PROGRESS_STR", default="🧡")
             self.FL_CAP = config("FILENAME_AS_CAPTION", default=False, cast=bool)
             self.FS_THRESHOLD = config("FLOOD_SLEEP_THRESHOLD", default=600, cast=int)
-            self.FSTICKER = config("FSTICKER", default=None)
+            self.FSTICKER = config(
+                "FSTICKER",
+                default="CAACAgUAAx0CbRJSKwABAmBIZ7PIZ2qqbl6d1ActhLacXmwH-oYAAhoDAAIX8Dw_8wpGlQuEOsM2BA",
+            )
             self.LOCK_ON_STARTUP = config("LOCK_ON_STARTUP", default=False, cast=bool)
             self.LOG_CHANNEL = config("LOG_CHANNEL", default=0, cast=int)
             self.LOGS_IN_CHANNEL = config("LOGS_IN_CHANNEL", default=False, cast=bool)
             self.MI_CAP = config("MI_IN_CAPTION", default=True, cast=bool)
-            self.MUX_ARGS = config("MUX_ARGS", default=None)
+            self.MUX_ARGS = config(
+                "MUX_ARGS",
+                default="-c:v copy -c:a libopus -b:a 32k -ac 2 -map_metadata 0",
+            )
             self.NO_BANNER = config("NO_BANNER", default=False, cast=bool)
             self.NO_TEMP_PM = config("NO_TEMP_PM", default=False, cast=bool)
             self.OVR = config("OVR", default=None)
@@ -75,7 +81,7 @@ class Config:
             self.QBIT_PORT = config("QBIT_PORT", default=8090, cast=int)
             self.QBIT_PORT2 = config("QBIT_PORT2", default=9090, cast=int)
             self.QBIT_TIMEOUT = config("QBIT_TIMEOUT", default=20, cast=int)
-            self.RELEASER = config("RELEASER", default="A-M|ANi-MiNE")
+            self.RELEASER = config("RELEASER", default="|")
             self.REPORT_FAILED = config("REPORT_FAILED", default=True, cast=bool)
             self.REPORT_FAILED_DL = config("REPORT_FAILED_DL", default=False, cast=bool)
             self.REPORT_FAILED_ENC = config(
@@ -96,7 +102,7 @@ class Config:
                 "UN_FINISHED_PROGRESS_STR", default="🤍"
             )
             self.UAV = config("UPLOAD_AS_VIDEO", default=False, cast=bool)
-            self.USE_ANILIST = config("USE_ANILIST", default=True, cast=bool)
+            self.USE_ANILIST = config("USE_ANILIST", default=False, cast=bool)
             self.USE_CAPTION = config("USE_CAPTION", default=True, cast=bool)
             self.UVS = config("UPLOAD_VIDEO_AS_SPOILER", default=False, cast=bool)
             self.WORKERS = config("WORKERS", default=2, cast=int)
