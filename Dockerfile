@@ -3,7 +3,7 @@ FROM fedora:42
 
 # Setup home directory, non interactive shell and timezone
 RUN mkdir -p /bot /tgenc && \
-    chmod -R 777 /usr /bot
+    chmod 777 /bot
 
 WORKDIR /bot
 
