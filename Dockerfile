@@ -2,14 +2,14 @@
 FROM fedora:42
 
 # Setup home directory, non interactive shell and timezone
-RUN mkdir -p /bot /tgenc && chmod -R 777 /usr /bot
+RUN mkdir -p /bot /tgenc && chmod 777 /bot
 WORKDIR /bot
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/Havana
 ENV TERM=xterm
 
 # Install Dependencies
-RUN dnf -qq -y update && dnf -qq -y install aria2 bash curl gcc git jq mediainfo procps-ng psmisc pv python3-devel python3-pip qbittorrent-nox wget xz zstd && dnf clean all && python3 -m pip install --upgrade pip setuptools
+RUN dnf -qq -y update && dnf -qq -y install aria2 bash curl gcc git jq mediainfo procps-ng psmisc pv python3-devel python3-pip qbittorrent-nox sudo wget xz zstd && dnf clean all && python3 -m pip install --upgrade pip setuptools
 
 # Install latest ffmpeg and ab-av1
 RUN wget -q https://github.com/QuickFatHedgehog/FFmpeg-Builds-SVT-AV1-HDR/releases/download/latest/ffmpeg-n7.1-latest-linux64-gpl-7.1.tar.xz && tar -xvf *xz && cp *7.1/bin/* /usr/bin && rm -rf ffmpeg* && \
@@ -21,6 +21,13 @@ COPY . .
 # Install python3 requirements
 RUN pip3 install -r requirements.txt && \
     pip cache purge
+
+# Create new user and add to sudoers
+USER root
+
+RUN useradd -ms /bin/bash newuser && \
+    usermod -aG wheel newuser && \
+    echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 # Cleanup
 RUN rm -rf fonts scripts .env* .git* Dockerfile License *.md requirements.txt srun* update*
